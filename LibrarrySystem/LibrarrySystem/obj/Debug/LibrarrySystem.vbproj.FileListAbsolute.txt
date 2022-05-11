@@ -57,3 +57,11 @@ D:\Project\News Project\LibrarrySystem\LibrarrySystem\LibrarrySystem\bin\Debug\e
 D:\Project\News Project\LibrarrySystem\LibrarrySystem\LibrarrySystem\bin\Debug\ja\DevExpress.XtraLayout.v20.1.resources.dll
 D:\Project\News Project\LibrarrySystem\LibrarrySystem\LibrarrySystem\bin\Debug\ru\DevExpress.XtraLayout.v20.1.resources.dll
 D:\Project\News Project\LibrarrySystem\LibrarrySystem\LibrarrySystem\obj\Debug\LibrarrySystem.exe.licenses
+D:\Project\News Project\LibrarrySystem\LibrarrySystem\LibrarrySystem\bin\Debug\EntityFramework.dll
+D:\Project\News Project\LibrarrySystem\LibrarrySystem\LibrarrySystem\bin\Debug\EntityFramework.SqlServer.dll
+D:\Project\News Project\LibrarrySystem\LibrarrySystem\LibrarrySystem\bin\Debug\System.Data.SQLite.dll
+D:\Project\News Project\LibrarrySystem\LibrarrySystem\LibrarrySystem\bin\Debug\System.Data.SQLite.EF6.dll
+D:\Project\News Project\LibrarrySystem\LibrarrySystem\LibrarrySystem\bin\Debug\System.Data.SQLite.Linq.dll
+D:\Project\News Project\LibrarrySystem\LibrarrySystem\LibrarrySystem\bin\Debug\EntityFramework.xml
+D:\Project\News Project\LibrarrySystem\LibrarrySystem\LibrarrySystem\bin\Debug\EntityFramework.SqlServer.xml
+D:\Project\News Project\LibrarrySystem\LibrarrySystem\LibrarrySystem\bin\Debug\System.Data.SQLite.xml

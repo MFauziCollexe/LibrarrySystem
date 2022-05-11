@@ -1,4 +1,6 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Data.SQLite
+Imports Microsoft.Office.Interop
 
 Module ModuleMain
     Dim cnReturn As SqlConnection
@@ -24,7 +26,7 @@ Module ModuleMain
         End Using
     End Function
 
-    Public Function StoreProc(ByVal csvDataSet As DataSet, ByVal Code As String, ByVal Idkaryawan As String,
+    Public Function StoreProc(ByVal NameStoreProcedure As String, ByVal csvDataSet As DataSet, ByVal Code As String, ByVal Idkaryawan As String,
                               ByVal NamaKaryawan As String, ByVal NIK As String, ByVal Alamat As String) As DataSet
         cnReturn = New SqlConnection(strConnect)
         Using (cnReturn)
@@ -32,7 +34,7 @@ Module ModuleMain
             Dim adapter As New SqlDataAdapter()
 
             sqlComm.Connection = cnReturn
-            sqlComm.CommandText = "AllSyncProcedure"
+            sqlComm.CommandText = NameStoreProcedure
             sqlComm.CommandType = CommandType.StoredProcedure
 
             sqlComm.Parameters.AddWithValue("code", Code)
@@ -54,4 +56,60 @@ Module ModuleMain
             cnReturn.Close()
         End Using
     End Function
+
+    Public Function QueryStringSQLite(ByVal csvDataSet As DataTable, ByVal sqlQuery As String) As DataTable
+        Dim mydata As New DataTable
+        Dim FILEPATH As String = Application.StartupPath
+        Dim myconnection As New SQLiteConnection("Data Source=" & FILEPATH & "\Sqlite.db")
+        Dim mycommand, reader
+        myconnection.Open()
+        mycommand = New SQLiteCommand(myconnection)
+        mycommand.CommandText = sqlQuery
+        reader = mycommand.ExecuteReader()
+        mydata.Load(reader)
+        csvDataSet = mydata
+        reader.Close()
+        myconnection.Close()
+        Return csvDataSet
+    End Function
+
+    Sub ExportExcel(ByVal obj As Object)
+        Dim rowsTotal, colsTotal As Short
+        Dim I, j, iC As Short
+        System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
+        Dim xlApp As New Excel.Application
+        Try
+            Dim excelBook As Excel.Workbook = xlApp.Workbooks.Add
+            Dim excelWorksheet As Excel.Worksheet = CType(excelBook.Worksheets(1), Excel.Worksheet)
+            xlApp.Visible = True
+
+            rowsTotal = obj.RowCount
+            colsTotal = obj.Columns.Count - 1
+            With excelWorksheet
+                .Cells.Select()
+                .Cells.Delete()
+                For iC = 0 To colsTotal
+                    .Cells(1, iC + 1).Value = obj.Columns(iC).HeaderText
+                Next
+                For I = 0 To rowsTotal - 1
+                    For j = 0 To colsTotal
+                        .Cells(I + 2, j + 1).value = obj.Rows(I).Cells(j).Value
+                    Next j
+                Next I
+                .Rows("1:1").Font.FontStyle = "Bold"
+                .Rows("1:1").Font.Size = 12
+
+                .Cells.Columns.AutoFit()
+                .Cells.Select()
+                .Cells.EntireColumn.AutoFit()
+                .Cells(1, 1).Select()
+            End With
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            'RELEASE ALLOACTED RESOURCES
+            System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.Default
+            xlApp = Nothing
+        End Try
+    End Sub
 End Module
