@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6FE6446F-9A6E-434D-8A1B-9DE12265D04B}</ProjectGuid>
+    <ProjectGuid>{DB33DA8D-CE78-45F2-9D86-526F2F7054AC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>LibrarrySystem</RootNamespace>
     <AssemblyName>LibrarrySystem</AssemblyName>
@@ -49,6 +49,7 @@
     <Reference Include="DevExpress.Sparkline.v20.1.Core" />
     <Reference Include="DevExpress.XtraEditors.v20.1" />
     <Reference Include="DevExpress.Printing.v20.1.Core" />
+    <Reference Include="DevExpress.XtraLayout.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -78,6 +79,7 @@
     <Compile Include="FrmMain.Designer.vb">
       <DependentUpon>FrmMain.vb</DependentUpon>
     </Compile>
+    <Compile Include="Module\ModuleMain.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
@@ -86,6 +88,7 @@
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
